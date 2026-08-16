@@ -1,2 +1,2 @@
 # resource-group-testing
-resouce
+resouce.
