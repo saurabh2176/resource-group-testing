@@ -32,7 +32,7 @@ jobs:
         run: |
           az login \
             --service-principal \
-            --username "5e4a427e-a0cb-4ea6-8aef-15b2763340ce" \
+            --username "2b599281-8ad2-402e-97a4-9c9ef20a7704" \
             --password "fYk8Q~IURf4nt~Db9oGRuE2HfWHv_n-6vrcJdaHV" \
             --tenant "c04247ef-3725-47f1-93c2-18778afc86e8"
 
@@ -80,7 +80,7 @@ jobs:
         run: |
           az login \
             --service-principal \
-            --username "5e4a427e-a0cb-4ea6-8aef-15b2763340ce" \
+            --username "2b599281-8ad2-402e-97a4-9c9ef20a7704" \
             --password "fYk8Q~IURf4nt~Db9oGRuE2HfWHv_n-6vrcJdaHV" \
             --tenant "c04247ef-3725-47f1-93c2-18778afc86e8"
 
