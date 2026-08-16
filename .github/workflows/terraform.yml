@@ -1,0 +1,105 @@
+name: Terraform
+
+on:
+  push:
+    branches:
+      - "**"
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-plan:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: environments/preprod
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        run: |
+          az login \
+            --service-principal \
+            --username "5e4a427e-a0cb-4ea6-8aef-15b2763340ce" \
+            --password "fYk8Q~IURf4nt~Db9oGRuE2HfWHv_n-6vrcJdaHV" \
+            --tenant "c04247ef-3725-47f1-93c2-18778afc86e8"
+
+      - name: Set Azure Subscription
+        run: |
+          az account set \
+            --subscription "5f2215aa-254d-4cd3-ab18-8cdd7a251f56"
+
+      - name: Check Azure Login
+        run: az account show
+
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
+  terraform-apply:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+
+    needs: terraform-plan
+
+    # Apply ONLY after push to main
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    defaults:
+      run:
+        working-directory: environments/preprod
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        run: |
+          az login \
+            --service-principal \
+            --username "5e4a427e-a0cb-4ea6-8aef-15b2763340ce" \
+            --password "fYk8Q~IURf4nt~Db9oGRuE2HfWHv_n-6vrcJdaHV" \
+            --tenant "c04247ef-3725-47f1-93c2-18778afc86e8"
+
+      - name: Set Azure Subscription
+        run: |
+          az account set \
+            --subscription "5f2215aa-254d-4cd3-ab18-8cdd7a251f56"
+
+      - name: Check Azure Login
+        run: az account show
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
