@@ -49,12 +49,15 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: environments/preprod
 
       - name: Terraform Validate
         run: terraform validate
+        working-directory: environments/preprod
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: environments/preprod
 
   terraform-apply:
     name: Terraform Apply
