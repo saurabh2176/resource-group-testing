@@ -1,7 +1,7 @@
 rgss1 = {
   rg1 = {
     name     = "rg-test1"
-    location = "central india"
+    location = "india south central"
     tags = {
       environment = "testing"
       owner       = "lokesh"
@@ -12,7 +12,7 @@ rgss1 = {
 vnet2 = {
   vnets = {
     name                = "vnet-prod"
-    location            = "central india"
+    location            = "india south central"
     resource_group_name = "rg-test1"
     address_space       = ["10.0.0.0/16"]
   }
@@ -31,7 +31,7 @@ publicip2 = {
   public_ips = {
     name                = "frontend-ip"
     resource_group_name = "rg-test1"
-    location            = "central india"
+    location            = "india south central"
     allocation_method   = "Static"
   }
 }
@@ -39,7 +39,7 @@ publicip2 = {
 nic2 = {
   nics = {
     name                 = "frontend-nic"
-    location             = "central india"
+    location             = "india south central"
     resource_group_name  = "rg-test1"
     subnet_name          = "frontend-subnet"
     virtual_network_name = "vnet-prod"
@@ -52,9 +52,9 @@ vm2 = {
   vms = {
     vm_name              = "frontend-vm"
     nic_name             = "frontend-nic"
-    location             = "central india"
+    location             = "india south central"
     resource_group_name  = "rg-test1"
-    size                 = "Standard_B1s"
+    size                 = "Standard_D2ls_v5"
     admin_username       = "devopsuser"
     admin_password       = "P@ssw0rd1234!"
     caching              = "ReadWrite"
