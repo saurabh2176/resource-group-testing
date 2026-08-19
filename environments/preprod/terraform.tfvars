@@ -23,6 +23,14 @@ rgss1 = {
       owner       = "sudheer"
     }
   }
+  rg4 = {
+    name     = "rg-test4"
+    location = "india south central"
+    tags = {
+      environment = "testing"
+      owner       = "sudheer"
+    }
+  }
 }
 
 vnet2 = {
