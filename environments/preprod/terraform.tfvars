@@ -7,6 +7,22 @@ rgss1 = {
       owner       = "lokesh"
     }
   }
+  rg2 = {
+    name     = "rg-test2"
+    location = "india south central"
+    tags = {
+      environment = "testing"
+      owner       = "saurabh"
+    }
+  }
+  rg3 = {
+    name     = "rg-test3"
+    location = "india south central"
+    tags = {
+      environment = "testing"
+      owner       = "sudheer"
+    }
+  }
 }
 
 vnet2 = {
